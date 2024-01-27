@@ -1,0 +1,7 @@
+{
+  "component": "simbot.mirai",
+
+  "config": {
+    "protocol": "ANDROID_PHONE"
+  }
+}
