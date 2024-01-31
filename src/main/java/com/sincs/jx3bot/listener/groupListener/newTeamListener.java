@@ -5,13 +5,14 @@ import love.forte.simboot.annotation.Listener;
 import love.forte.simbot.event.GroupMessageEvent;
 import org.springframework.stereotype.Component;
 
+import java.util.concurrent.CompletableFuture;
+
 @Component
 public class newTeamListener {
-    @Listener
-    @Filter(value = "\\.开团")
-    public void listener(GroupMessageEvent groupMessageEvent) {
-        System.out.printf(groupMessageEvent.getMessageContent().toString());
-        groupMessageEvent.replyBlocking("test");
 
+    @Listener
+    @Filter(value = "^.开团 .+ .+ .+")
+    public CompletableFuture<?> listener(GroupMessageEvent groupMessageEvent) {
+        return groupMessageEvent.getGroup().sendAsync(groupMessageEvent.getMessageContent().getPlainText());
     }
 }
